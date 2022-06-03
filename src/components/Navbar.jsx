@@ -87,7 +87,6 @@ const Navbar = () => {
   const gotoNecklaces = () => { history.push('/products/necklaces') };
   const gotoKeychains = () => { history.push('/products/keychains') };
   const gotoLogin = () => { history.push('/login') };
-  const gotoSingup = () => { history.push('/register') };
   const gotoHome = () => { history.push('/') };
 
   const dispatch = useDispatch();
@@ -108,7 +107,7 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo onClick={gotoHome}>OLA DE MAR.</Logo>
+          <Logo onClick={gotoHome}>MUDELERY ACCESORIES</Logo>
         </Center>
         <Right>
           <MenuItem onClick={gotoTeddies}>PELUCHES</MenuItem>

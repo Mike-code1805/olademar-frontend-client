@@ -66,24 +66,23 @@ const Error = styled.span`
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirmated, setPasswordConfirmated] = useState("");
   const [email, setEmail]= useState("");
   const history = useHistory();
   const gotoLogin = () => { history.push('/login') };
-
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector((state) => state.user);
 
   const handleClickRegister = (e) => {
     e.preventDefault();
-    register(dispatch, { username, password, email });
-    dispatch(logout());    
+    register(dispatch, { username, password, email }); 
+    
   };
   const handleClickLogin = () => {
     dispatch(logout());  
     gotoLogin();  
   };
-
+  console.log(error);
+  console.log(isFetching);
   return (
     <Container>
       <Envoltorio>
@@ -98,14 +97,16 @@ const Register = () => {
           onChange={(e) => setPassword(e.target.value)}
           />
           <Input placeholder="Confirmar contraseña" type="password" 
-          onChange={(e) => setPasswordConfirmated(e.target.value)}/>
+          />
           <Agreement>
             Al crear una cuenta, doy consentimieto del uso de mis
             datos personales acorde a la <b>POLÍTICA DE PRIVACIDAD</b>
           </Agreement>
-          <Button onClick={handleClickRegister} disabled={isFetching}>CREAR</Button>
+          <Button onClick={handleClickRegister} disabled={isFetching}>CREAR 
+          </Button>          
           <Button onClick={handleClickLogin} disabled={isFetching}>INICIAR SESION</Button>
           {error && <Error>Digite bien sus credenciales...</Error>}
+          
         </Form>
       </Envoltorio>
     </Container>

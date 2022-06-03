@@ -60,7 +60,8 @@ const Success = () => {
       }}
     >
       {orderId
-        ? `El pedido se ha creado con éxito. tu numero de orden es ${orderId}`
+        ? `El pedido se ha creado con éxito. tu numero de orden es ${orderId}. 
+        NO OLVIDES CONTACTARME PARA EL ENVÍO`
         : `¡Pago exitoso! Tu pedido está siendo preparado...`}
       <button onClick={gotoHomeAndHandleClearList} style={{ padding: 10, marginTop: 20 }}>Ir al Inicio</button>
     </div>

@@ -20,8 +20,8 @@ const Products = ({ name, cat, filters, sort }) => {
       try {
         const res = await axios.get(
           cat
-            ? `http://localhost:5000/api/products?category=${cat}`
-            : "http://localhost:5000/api/products"
+            ? `${process.env.REACT_APP_PORT}products?category=${cat}`
+            : `${process.env.REACT_APP_PORT}products`
         );
         setProducts(res.data);
       } catch (err) {}
@@ -34,8 +34,8 @@ const Products = ({ name, cat, filters, sort }) => {
       try {
         const res = await axios.get(
           name && cat
-            ? `http://localhost:5000/api/products?name=${name}&category=${cat}`
-            : "http://localhost:5000/api/products"
+            ? `${process.env.REACT_APP_PORT}products?name=${name}&category=${cat}`
+            : `${process.env.REACT_APP_PORT}products`
         );
         setProductsTitle(res.data);
         console.log(res);

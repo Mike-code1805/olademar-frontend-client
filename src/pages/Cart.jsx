@@ -162,7 +162,7 @@ const Button = styled.button`
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
-  const gotoHome = () => { history.push('/') };
+  const gotoHome = () => { history.push('/')};
   const goBack  = () => { history.goBack() };
   const history = useHistory();
   const dispatch = useDispatch();

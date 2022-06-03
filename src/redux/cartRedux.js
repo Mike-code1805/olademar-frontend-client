@@ -39,8 +39,9 @@ const cartSlice = createSlice({
     deleteProduct: (state, action) => {
       const index = state.products.findIndex(product => product._id === action.payload);
       state.quantity -= 1;
-      state.total -= action.payload[index].price * state.products[index].quantity;
+      state.total -= state.products[index].price * state.products[index].quantity;
       state.products.splice(index, 1);
+      
     },
     clearList: (state) => {
       state.products = [];
