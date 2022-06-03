@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { login } from "../redux/apiCalls";
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Container = styled.div`
   width: 100vw;
@@ -47,7 +48,7 @@ const Button = styled.button`
   width: 40%;
   border: none;
   padding: 15px 20px;
-  background-color: teal;
+  background-color: #FA9100;
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
@@ -73,6 +74,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector((state) => state.user);
+  const history = useHistory();
+  const gotoSingup = () => { history.push('/register') };
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -97,7 +100,7 @@ const Login = () => {
           </Button>
           {error && <Error>Algo ha fallado...</Error>}
           <Link>¿NO RECUERDAS TU CONTRASEÑA?</Link>
-          <Link>REGISTRATE</Link>
+          <Link onClick={gotoSingup} >REGISTRATE</Link>
         </Form>
       </Wrapper>
     </Container>

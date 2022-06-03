@@ -94,6 +94,7 @@ const Navbar = () => {
   
   const handleLogout = () => {
     dispatch(logout());
+    gotoLogin();
   }
 
   return (
@@ -113,8 +114,8 @@ const Navbar = () => {
           <MenuItem onClick={gotoTeddies}>PELUCHES</MenuItem>
           <MenuItem onClick={gotoNecklaces}>COLLARES</MenuItem>
           <MenuItem onClick={gotoKeychains}>LLAVEROS</MenuItem>
-          <MenuItem onClick={gotoSingup}>REGISTRARSE</MenuItem>
-          <MenuItem onClick={gotoLogin}>INICIAR SESIÓN</MenuItem>
+          {/* <MenuItem onClick={gotoSingup}>REGISTRARSE</MenuItem>
+          <MenuItem onClick={gotoLogin}>INICIAR SESIÓN</MenuItem> */}
           <MenuItem onClick={handleLogout}>CERRAR SESIÓN</MenuItem>
           <Link to="/cart">
           <MenuItem>

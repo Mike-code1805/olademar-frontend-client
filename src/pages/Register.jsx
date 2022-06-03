@@ -1,4 +1,9 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
+import { register } from "../redux/apiCalls";
+import { logout } from "../redux/userRedux";
 import { mobile } from "../responsive";
 
 const Container = styled.div`
@@ -48,30 +53,59 @@ const Button = styled.button`
   width: 40%;
   border: none;
   padding: 15px 20px;
-  background-color: teal;
+  background-color: #FA9100;
   color: white;
   cursor: pointer;
+  margin-left: 20px;
+`;
+
+const Error = styled.span`
+  color: red;
 `;
 
 const Register = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmated, setPasswordConfirmated] = useState("");
+  const [email, setEmail]= useState("");
+  const history = useHistory();
+  const gotoLogin = () => { history.push('/login') };
+
+  const dispatch = useDispatch();
+  const { isFetching, error } = useSelector((state) => state.user);
+
+  const handleClickRegister = (e) => {
+    e.preventDefault();
+    register(dispatch, { username, password, email });
+    dispatch(logout());    
+  };
+  const handleClickLogin = () => {
+    dispatch(logout());  
+    gotoLogin();  
+  };
+
   return (
     <Container>
       <Envoltorio>
         <Title>CREAR UNA CUENTA</Title>
         <Form>
-          <Input placeholder="Nombres" />
-          <Input placeholder="Apellidos" />
-          <Input placeholder="Nombre de usuario" />
-          <Input placeholder="Email" />
+          <Input placeholder="Nombre de usuario" 
+          onChange={(e) => setUsername(e.target.value)}/>
+          <Input placeholder="Email" 
+          onChange={(e) => setEmail(e.target.value)}/>
           <Input placeholder="Contraseña" 
           type="password"
+          onChange={(e) => setPassword(e.target.value)}
           />
-          <Input placeholder="Confirmar contraseña" type="password" />
+          <Input placeholder="Confirmar contraseña" type="password" 
+          onChange={(e) => setPasswordConfirmated(e.target.value)}/>
           <Agreement>
             Al crear una cuenta, doy consentimieto del uso de mis
             datos personales acorde a la <b>POLÍTICA DE PRIVACIDAD</b>
           </Agreement>
-          <Button>CREAR</Button>
+          <Button onClick={handleClickRegister} disabled={isFetching}>CREAR</Button>
+          <Button onClick={handleClickLogin} disabled={isFetching}>INICIAR SESION</Button>
+          {error && <Error>Digite bien sus credenciales...</Error>}
         </Form>
       </Envoltorio>
     </Container>

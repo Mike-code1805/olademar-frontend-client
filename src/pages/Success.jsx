@@ -8,11 +8,16 @@ import { userRequest } from "../requestMethods";
 
 const Success = () => {
   const location = useLocation();
-  //in Cart.jsx I sent data and cart. Please check that page for the changes.(in video it's only data)
+  
   const data = location.state.stripeData;
-  const cart = location.state.cart;
+  const cart = useSelector((state) => state.cart);
   const currentUser = useSelector((state) => state.user.currentUser);
-  const [orderId, setOrderId] = useState(null);
+  const [orderId, setOrderId] = useState();
+
+  console.log(orderId);
+  console.log(currentUser);
+  console.log(data);
+  console.log(cart)
 
   useEffect(() => {
     const createOrder = async () => {
@@ -25,12 +30,15 @@ const Success = () => {
           })),
           amount: cart.total,
           address: data.billing_details.address,
-        });
+        });        
+        console.log(res);
         setOrderId(res.data._id);
-      } catch {}
-    };
-    data && createOrder();
-
+        
+      } catch {
+        console.log("error en ordenes");
+      }
+    };  
+    createOrder();
   }, [cart, data, currentUser]);
 
   const history = useHistory();
