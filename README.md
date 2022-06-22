@@ -1,7 +1,7 @@
 # OlaDeMar Frontend Client
 
 ## Abstract
-First version of the OlaDeMar ecommerce frontend.
+Second version of the OlaDeMar ecommerce frontend with Client.
 
 ## Available Scripts
 
